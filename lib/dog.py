@@ -86,8 +86,15 @@ class Dog:
         
         dog = CURSOR.execute(sql, (name,)).fetchone()
         
-        # return a dog instance
-        return cls.new_from_db(dog)
+        # # return a dog instance
+        # return cls.new_from_db(dog)
+        
+        # check if there is any object returned
+        if dog:
+            # return a dog instance
+            return cls.new_from_db(dog)
+        else:
+            return None
     
     # find by id
     @classmethod
@@ -101,8 +108,15 @@ class Dog:
         
         my_dog = CURSOR.execute(sql, (id,)).fetchone()
         
-        # return a dog instance
-        return cls.new_from_db(my_dog)
+        # # return a dog instance
+        # return cls.new_from_db(my_dog)
+    
+        # check if there is any object returned
+        if my_dog:
+            # return a dog instance
+            return cls.new_from_db(my_dog)
+        else:
+            return None
     
     # find or create
     @classmethod
@@ -132,6 +146,6 @@ class Dog:
         """
         
         CURSOR.execute(sql, (self.name, self.id))
-        CONN.commit()
+        
         
         
